@@ -27,8 +27,8 @@ void RosThread::cloud_cb(const sensor_msgs::PointCloud2ConstPtr &cloud)
 void RosThread::parameters_cb(const alfa_msg::AlfaConfigs &msg)
 {
     alfa_msg::AlfaMetrics output;
-    cout<<"Recieved FilterSettings... Updating"<<endl;
-    for (int i; msg.configurations.size();i++) {
+    cout<<"Recieved FilterSettings with size" <<msg.configurations.size()<<"... Updating"<<endl;
+    for (int i=0; i< msg.configurations.size();i++) {
         cout <<"Configuration: "<<i<< " With name: "<< msg.configurations[i].config_name<< " with value: "<< msg.configurations[i].config<<endl;
         alfa_msg::MetricMessage new_metric;
         new_metric.metric =  msg.configurations[i].config;
