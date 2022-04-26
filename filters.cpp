@@ -568,8 +568,9 @@ void Filters::filter_pointGDROR(pcl::PointXYZI point)
     }
 }
 
-void Filters::update_filterSettings(const alfa_dvc::FilterSettings &msg)
+void Filters::update_filterSettings(const alfa_msg::AlfaConfigure::Request &msg)
 {
+    /*
     cout<<"updating filter Settings to "<<msg.filterNumber<<endl;
     mutex.lock();
     filter_number = msg.filterNumber;
@@ -635,6 +636,7 @@ void Filters::update_filterSettings(const alfa_dvc::FilterSettings &msg)
         }
     }
         mutex.unlock();
+        */
 
 }
 

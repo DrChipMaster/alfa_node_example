@@ -53,7 +53,6 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   message_generation
   alfa_msg
-  alfa_dvc
 )
 find_package(Boost REQUIRED COMPONENTS filesystem thread)
 
@@ -66,7 +65,6 @@ include_directories(
 generate_messages(
   DEPENDENCIES
   alfa_msg
-  alfa_dvc
 )
 
 catkin_package(

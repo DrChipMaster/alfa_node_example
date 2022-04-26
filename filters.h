@@ -14,8 +14,7 @@
 #include <pcl/filters/radius_outlier_removal.h>
 #include <pcl/filters/conditional_removal.h>
 #include <vector>
-#include "alfa_dvc/FilterSettings.h"
-#include "alfa_msg/AlfaConfigs.h"
+#include "alfa_msg/AlfaConfigure.h"
 //#include "/home/andre/catkin_ws/devel/include/alfa_msg/AlfaMetrics.h"
 
 
@@ -44,7 +43,7 @@ public:
     void do_LIORfilter();
     void do_DLIORfilter();
     void apply_filters();
-    void update_filterSettings(const alfa_dvc::FilterSettings &msg);
+    void update_filterSettings(const alfa_msg::AlfaConfigure::Request &msg);
     void do_hardwarefilter();
 
 

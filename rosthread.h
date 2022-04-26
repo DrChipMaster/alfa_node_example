@@ -16,7 +16,7 @@
 #include <pcl/filters/passthrough.h>
 #include <pcl/filters/extract_indices.h>
 #include <pcl_conversions/pcl_conversions.h>
-#include "alfa_msg/AlfaConfigs.h"
+#include "alfa_msg/AlfaConfigure.h"
 #include "alfa_msg/AlfaMetrics.h"
 
 
@@ -30,9 +30,9 @@ public:
 private:
     Filters* mFilters;
     void cloud_cb (const  sensor_msgs::PointCloud2ConstPtr& cloud);
-    void parameters_cb(const alfa_msg::AlfaConfigs &msg);
+    bool parameters_cb(alfa_msg::AlfaConfigure::Request &req, alfa_msg::AlfaConfigure::Response &res);
     ros::Subscriber sub_cloud;
-    ros::Subscriber sub_parameters;
+    ros::ServiceServer sub_parameters;
     ros::NodeHandle nh;
     pcl::PointCloud<PointT>::Ptr pcloud;
     void init();
