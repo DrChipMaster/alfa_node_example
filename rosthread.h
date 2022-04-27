@@ -18,7 +18,7 @@
 #include <pcl_conversions/pcl_conversions.h>
 #include "alfa_msg/AlfaConfigure.h"
 #include "alfa_msg/AlfaMetrics.h"
-
+#include "alfa_msg/AlfaAlivePing.h"
 
 
 using namespace std;
@@ -39,6 +39,7 @@ private:
     void subscrive_topics();
     boost::thread *m_spin_thread;
     ros::Publisher filter_metrics;
+    ros::Publisher ping;
 
     void spin();
 

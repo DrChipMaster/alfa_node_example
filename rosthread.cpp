@@ -1,5 +1,6 @@
 #include "rosthread.h"
 #include <thread>
+#include <unistd.h>
 
 
 
@@ -36,6 +37,15 @@ bool RosThread::parameters_cb(alfa_msg::AlfaConfigure::Request &req, alfa_msg::A
     }
     filter_metrics.publish(output);
     res.return_status=1;
+    alfa_msg::AlfaAlivePing newPing;
+    newPing.node_name= "Dummy node";
+    newPing.node_type = "Test";
+    newPing.config_service_name = "dummy_settings";
+    alfa_msg::ConfigMessage parameter;
+    parameter.config = 10;
+    parameter.config_name = "TEST1234";
+    newPing.default_configurations.push_back(parameter);
+    ping.publish(newPing);
     return true;
     //mFilters->update_filterSettings(msg);
 
@@ -61,10 +71,12 @@ void RosThread::subscrive_topics()
     sub_cloud = nh.subscribe("alfa_pointcloud",0,&RosThread::cloud_cb,this);
 
 
-    sub_parameters = nh.advertiseService("alfa_filter_settings",&RosThread::parameters_cb,this);
+    sub_parameters = nh.advertiseService("dummy_settings",&RosThread::parameters_cb,this);
     ros::NodeHandle n;
-    filter_metrics = n.advertise<alfa_msg::AlfaMetrics>("alfa_filter_metrics", 1);
+    filter_metrics = n.advertise<alfa_msg::AlfaMetrics>("dummy_metrics", 0);
+    ping = n.advertise<alfa_msg::AlfaAlivePing>("dummy_ping",0);
     m_spin_thread = new boost::thread(&RosThread::spin, this);
+
 
 }
 
